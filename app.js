@@ -22,7 +22,7 @@ app.use('/', apiRoutes);
 app.use((error, request, response, next) => {
   console.log(error);
   // Get error response
-  sendResponse(response, 500, 'server_error', null, {
+  response.json({
     date_time: new Date().toISOString(),
     ...error,
     throwed: {
