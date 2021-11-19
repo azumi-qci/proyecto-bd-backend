@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Set base URL
-app.use('/', apiRoutes);
+app.use('/api', apiRoutes);
 
 // Set error handler
 app.use((error, request, response, next) => {
