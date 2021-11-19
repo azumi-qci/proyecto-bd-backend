@@ -17,8 +17,8 @@ clienteModel.getAllClientes = () => {
 clienteModel.addCliente = (data) => {
   const query = `
     INSERT INTO
-      public.cliente (nombre, direccion, telefono, genero, fecha_nacimiento)
-    VALUES ($1, $2, $3, $4, $5)
+      public.cliente (nombre, direccion, telefono, genero, fecha_nacimiento, curp)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING idcliente
   `;
 
@@ -28,6 +28,7 @@ clienteModel.addCliente = (data) => {
     data.telefono,
     data.genero,
     data.fechaNacimiento,
+    data.curp,
   ]);
 };
 

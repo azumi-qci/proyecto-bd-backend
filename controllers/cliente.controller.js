@@ -23,9 +23,17 @@ async function getAllClientes(request, response, next) {
  * @param {import('express').NextFunction} next
  */
 async function addCliente(request, response, next) {
-  const { nombre, direccion, telefono, genero, fechaNacimiento } = request.body;
+  const { nombre, direccion, telefono, genero, fechaNacimiento, curp } =
+    request.body;
 
-  if (!nombre || !direccion || !telefono || isNaN(genero) || !fechaNacimiento) {
+  if (
+    !nombre ||
+    !direccion ||
+    !telefono ||
+    isNaN(genero) ||
+    !fechaNacimiento ||
+    !curp
+  ) {
     return response.status(422).json({
       message: 'Empty fields',
     });
@@ -38,6 +46,7 @@ async function addCliente(request, response, next) {
       telefono,
       genero,
       fechaNacimiento,
+      curp,
     });
 
     return response.status(200).json({
