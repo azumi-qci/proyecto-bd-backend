@@ -63,6 +63,56 @@ async function addCliente(request, response, next) {
  * @param {import('express').Response} response
  * @param {import('express').NextFunction} next
  */
+async function updateCliente(request, response, next) {
+  const { idcliente } = request.params;
+  const { nombre, direccion, telefono, genero, fechaNacimiento, curp } =
+    request.body;
+
+  if (
+    !nombre ||
+    !direccion ||
+    !telefono ||
+    isNaN(genero) ||
+    !fechaNacimiento ||
+    !curp
+  ) {
+    return response.status(422).json({
+      message: 'Empty fields',
+    });
+  }
+
+  try {
+    const updateQuery = await clienteModel.updateCliente({
+      idcliente,
+      nombre,
+      direccion,
+      telefono,
+      genero,
+      fechaNacimiento,
+      curp,
+    });
+
+    if (updateQuery.rowCount == 0) {
+      return response.status(404).json({
+        message: 'Row not found',
+        idcliente,
+      });
+    }
+
+    return response.status(200).json({
+      message: 'Row updated',
+      idcliente,
+    });
+  } catch (error) {
+    next({ error });
+  }
+}
+
+/**
+ * @param {import('express').Request} request
+ * @param {import('express').Response} response
+ * @param {import('express').NextFunction} next
+ */
 async function deleteCliente(request, response, next) {
   const { idcliente } = request.params;
 
@@ -85,4 +135,4 @@ async function deleteCliente(request, response, next) {
   }
 }
 
-module.exports = { getAllClientes, addCliente, deleteCliente };
+module.exports = { getAllClientes, addCliente, updateCliente, deleteCliente };

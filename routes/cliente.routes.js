@@ -8,6 +8,8 @@ const clienteController = require('../controllers/cliente.controller');
 router.get('/', clienteController.getAllClientes);
 // POST
 router.post('/', clienteController.addCliente);
+// PUT
+router.put('/:idcliente', clienteController.updateCliente);
 // DELETE
 router.delete('/:idcliente', clienteController.deleteCliente);
 

@@ -32,6 +32,30 @@ clienteModel.addCliente = (data) => {
   ]);
 };
 
+clienteModel.updateCliente = (data) => {
+  const query = `
+    UPDATE public.cliente
+    SET
+      nombre = $1,
+      direccion = $2,
+      telefono = $3,
+      genero = $4,
+      fecha_nacimiento = $5,
+      curp = $6
+    WHERE idcliente = $7
+  `;
+
+  return pool.query(query, [
+    data.nombre,
+    data.direccion,
+    data.telefono,
+    data.genero,
+    data.fechaNacimiento,
+    data.curp,
+    data.idcliente,
+  ]);
+};
+
 clienteModel.deleteCliente = (idcliente) => {
   const query = `
     DELETE
