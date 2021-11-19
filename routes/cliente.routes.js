@@ -4,6 +4,8 @@ const router = require('express').Router();
 
 const clienteController = require('../controllers/cliente.controller');
 
+// GET
+router.get('/', clienteController.getAllClientes);
 // POST
 router.post('/', clienteController.addCliente);
 // DELETE

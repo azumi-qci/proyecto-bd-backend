@@ -4,6 +4,16 @@ const { pool } = require('../database');
 
 let clienteModel = {};
 
+clienteModel.getAllClientes = () => {
+  const query = `
+    SELECT *
+    FROM public.cliente
+    ORDER BY idcliente
+  `;
+
+  return pool.query(query, []);
+};
+
 clienteModel.addCliente = (data) => {
   const query = `
     INSERT INTO

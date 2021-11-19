@@ -7,6 +7,21 @@ const clienteModel = require('../models/cliente.model');
  * @param {import('express').Response} response
  * @param {import('express').NextFunction} next
  */
+async function getAllClientes(request, response, next) {
+  try {
+    const getQuery = await clienteModel.getAllClientes();
+
+    return response.status(200).json([...getQuery.rows]);
+  } catch (error) {
+    next({ error });
+  }
+}
+
+/**
+ * @param {import('express').Request} request
+ * @param {import('express').Response} response
+ * @param {import('express').NextFunction} next
+ */
 async function addCliente(request, response, next) {
   const { nombre, direccion, telefono, genero, fechaNacimiento } = request.body;
 
@@ -61,4 +76,4 @@ async function deleteCliente(request, response, next) {
   }
 }
 
-module.exports = { addCliente, deleteCliente };
+module.exports = { getAllClientes, addCliente, deleteCliente };
