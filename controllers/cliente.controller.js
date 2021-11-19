@@ -47,7 +47,7 @@ async function deleteCliente(request, response, next) {
 
     if (deleteQuery.rowCount == 0) {
       return response.status(404).json({
-        message: `Row not found: ${idcliente}`,
+        message: 'Row not found',
         idcliente,
       });
     }
