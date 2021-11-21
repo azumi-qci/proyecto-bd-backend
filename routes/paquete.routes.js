@@ -9,8 +9,8 @@ router.get('/', paqueteController.getAllPaquetes);
 // POST
 router.post('/', paqueteController.addPaquete);
 // PUT
-router.put('/:idempleado', paqueteController.updatePaquete);
+router.put('/:idpaquete', paqueteController.updatePaquete);
 // DELETE
-router.delete('/:idempleado', paqueteController.deletePaquete);
+router.delete('/:idpaquete', paqueteController.deletePaquete);
 
 module.exports = router;
