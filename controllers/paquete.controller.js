@@ -49,6 +49,7 @@ async function addPaquete(request, response, next) {
     return response.status(200).json({
       message: 'Row added',
       idpaquete: addQuery.rows[0]?.idpaquete,
+      price: addQuery.rows[0]?.price,
     });
   } catch (error) {
     next({ error });

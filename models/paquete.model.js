@@ -19,7 +19,7 @@ paqueteModel.addPaquete = (data) => {
     INSERT INTO
       public.paquete (nombre_cliente, dir_destino, peso, es_fragil, dimension)
     VALUES ($1, $2, $3, $4, $5)
-    RETURNING idpaquete
+    RETURNING idpaquete, price
   `;
 
   return pool.query(query, [
