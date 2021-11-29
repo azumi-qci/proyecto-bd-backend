@@ -17,8 +17,8 @@ paqueteModel.getAllPaquetes = () => {
 paqueteModel.addPaquete = (data) => {
   const query = `
     INSERT INTO
-      public.paquete (nombre_cliente, dir_destino, peso, es_fragil, dimension)
-    VALUES ($1, $2, $3, $4, $5)
+      public.paquete (nombre_cliente, dir_destino, peso, es_fragil, dimension, idrepartidor)
+    VALUES ($1, $2, $3, $4, $5, $6)
     RETURNING idpaquete, price
   `;
 
@@ -28,6 +28,7 @@ paqueteModel.addPaquete = (data) => {
     data.peso,
     data.esFragil,
     data.dimension,
+    data.idrepartidor,
   ]);
 };
 
@@ -39,8 +40,9 @@ paqueteModel.updatePaquete = (data) => {
       dir_destino = $2,
       peso = $3,
       es_fragil = $4,
-      dimension = $5
-    WHERE idpaquete = $6
+      dimension = $5,
+      repartidor = $6
+    WHERE idpaquete = $7
   `;
 
   return pool.query(query, [
@@ -49,6 +51,7 @@ paqueteModel.updatePaquete = (data) => {
     data.peso,
     data.esFragil,
     data.dimension,
+    data.idrepartidor,
     data.idpaquete,
   ]);
 };

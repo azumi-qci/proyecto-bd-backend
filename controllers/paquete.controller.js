@@ -23,14 +23,16 @@ async function getAllPaquetes(request, response, next) {
  * @param {import('express').NextFunction} next
  */
 async function addPaquete(request, response, next) {
-  const { nombreCliente, dirDestino, peso, esFragil, dimension } = request.body;
+  const { nombreCliente, dirDestino, peso, esFragil, dimension, idrepartidor } =
+    request.body;
 
   if (
     !nombreCliente ||
     !dirDestino ||
     isNaN(peso) ||
     isNaN(esFragil) ||
-    !dimension
+    !dimension ||
+    isNaN(idrepartidor)
   ) {
     return response.status(422).json({
       message: 'Empty fields',
@@ -44,6 +46,7 @@ async function addPaquete(request, response, next) {
       peso,
       esFragil,
       dimension,
+      idrepartidor,
     });
 
     return response.status(200).json({
@@ -63,14 +66,16 @@ async function addPaquete(request, response, next) {
  */
 async function updatePaquete(request, response, next) {
   const { idpaquete } = request.params;
-  const { nombreCliente, dirDestino, peso, esFragil, dimension } = request.body;
+  const { nombreCliente, dirDestino, peso, esFragil, dimension, idrepartidor } =
+    request.body;
 
   if (
     !nombreCliente ||
     !dirDestino ||
     isNaN(peso) ||
     isNaN(esFragil) ||
-    !dimension
+    !dimension ||
+    isNaN(idrepartidor)
   ) {
     return response.status(422).json({
       message: 'Empty fields',
@@ -85,6 +90,7 @@ async function updatePaquete(request, response, next) {
       peso,
       esFragil,
       dimension,
+      idrepartidor,
     });
 
     if (updateQuery.rowCount == 0) {
