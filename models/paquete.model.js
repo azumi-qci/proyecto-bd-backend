@@ -41,7 +41,7 @@ paqueteModel.updatePaquete = (data) => {
       peso = $3,
       es_fragil = $4,
       dimension = $5,
-      repartidor = $6
+      idrepartidor = $6
     WHERE idpaquete = $7
   `;
 
